@@ -1,7 +1,7 @@
 // ValueTrainer.jsx
 import React, { useState, useEffect } from "react";
-import ColorCard from './../components/ColorCard.jsx';
-import './ValueTrainer.css';
+import ColorCard from "./../components/ColorCard.jsx";
+import "./ValueTrainer.css";
 // Threshold for considering two grayscale values a match
 const MATCH_THRESHOLD = 5;
 
@@ -88,7 +88,10 @@ function ValueTrainer() {
 
   const handleDrop = (index) => () => {
     const newCards = [...cards];
-    [newCards[index], newCards[draggedIndex]] = [newCards[draggedIndex], newCards[index]];
+    [newCards[index], newCards[draggedIndex]] = [
+      newCards[draggedIndex],
+      newCards[index],
+    ];
     setCards(newCards);
   };
 
@@ -122,6 +125,7 @@ function ValueTrainer() {
         >
           Matching Mode
         </button>
+
         <button
           className={mode === 2 ? "active" : ""}
           onClick={() => setMode(2)}
@@ -129,18 +133,24 @@ function ValueTrainer() {
           Sorting Mode
         </button>
       </div>
-      {mode === 2 && (
-        <button onClick={checkSortingOrder}>Check Order</button>
+      {mode === 1 && (
+        <p>
+          Click on a card to choose it. Then click on another card to see if
+          they match.
+        </p>
       )}
+      {mode === 2 && (
+        <p>
+          Drag and drop the cards to sort them in ascending luminance order.
+        </p>
+      )}
+      {mode === 2 && <button onClick={checkSortingOrder}>Check Order</button>}
       {feedback && (
         <div style={{ margin: "15px", fontWeight: "bold" }}>{feedback}</div>
       )}
       <div className="cards-container">
         {cards.map((card, index) => (
-          <div
-            key={index}
-            onClick={() => mode === 1 && handleCardClick(index)}
-          >
+          <div key={index} onClick={() => mode === 1 && handleCardClick(index)}>
             <ColorCard
               color={card}
               draggable={mode === 2}
@@ -183,7 +193,8 @@ function generateMatchingColor(gray) {
 
 // Helper: Shuffle an array using the Fisher–Yates algorithm
 function shuffle(array) {
-  let currentIndex = array.length, randomIndex;
+  let currentIndex = array.length,
+    randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
