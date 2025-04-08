@@ -57,7 +57,7 @@ function App() {
         </p>
         <p>
           And feel free to send me an email to{" "}
-          <a href="mailto:dpineda.dev@gmail.com">dpineda.dev@example.com</a>,
+          <a href="mailto:dpineda.dev@gmail.com">dpineda.dev@gmail.com</a>,
           I'll be happy to chat about art, vision or computers!
         </p>
       </footer>
